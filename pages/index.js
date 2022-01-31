@@ -3,8 +3,6 @@ import React from 'react';
 import { useRouter } from 'next/router'
 import appConfig from '../config.json'
 
-
-
 function Title(props) {
     const Tag = props.tag || 'h1';
 
@@ -62,13 +60,12 @@ export default function PaginaInicial() {
                         backgroundColor: appConfig.theme.colors.neutrals[700],
                     }}
                 >
-                    {/* Formulário */}
                     <Box
                         as="form"
                         onSubmit={
                             (e) => {
                                 e.preventDefault()
-                                route.push('/chat')
+                                route.push(`/chat/?username=${username}`)
                             }
                         }
                         styleSheet={{
@@ -81,15 +78,6 @@ export default function PaginaInicial() {
                             {appConfig.name} ({username})
                         </Text>
 
-                        {/* <input 
-                            type="text"
-                            value={username}
-                            onChange={
-                                (event) => {
-                                    setUsername(event.target.value)
-                                }
-                            }
-                        /> */}
                         <TextField
                             placeholder='Digite seu user do github'
                             value={username}
@@ -120,10 +108,7 @@ export default function PaginaInicial() {
                             }}
                         />
                     </Box>
-                    {/* Formulário */}
 
-
-                    {/* Photo Area */}
                     <Box
                         styleSheet={{
                             display: 'flex',
@@ -158,7 +143,6 @@ export default function PaginaInicial() {
                             {username}
                         </Text>
                     </Box>
-                    {/* Photo Area */}
                 </Box>
             </Box>
         </>
