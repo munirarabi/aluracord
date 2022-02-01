@@ -1,3 +1,5 @@
+import styles from './Chat.module.css'
+
 import { Box, Text, TextField, Image, Button } from '@skynexui/components';
 import React from 'react';
 import appConfig from '../config.json';
@@ -91,7 +93,9 @@ export default function ChatPage() {
             >
                 <Header />
                 <Box
+                    className={styles.box}
                     styleSheet={{
+                        textOverflow: 'auto',
                         position: 'relative',
                         display: 'flex',
                         flex: 1,
@@ -156,7 +160,7 @@ export default function ChatPage() {
                                 handleNovaMensagem(mensagem)
                             }}
                             styleSheet={{
-                                width: '10%',
+                                width: '80px',
                                 border: '0',
                                 padding: '13.5px 8px',
                                 marginBottom: '7px',
@@ -207,6 +211,7 @@ function MessageList(props) {
                         key={mensagem.id}
                         tag="li"
                         styleSheet={{
+                            // maxWidth: '200px',
                             borderRadius: '5px',
                             padding: '6px',
                             marginBottom: '12px',
@@ -243,12 +248,11 @@ function MessageList(props) {
                                 {(new Date().toLocaleDateString())}
                             </Text>
                         </Box>
-                        {/* {mensagem.texto} */}
                         {
                             mensagem.texto.startsWith(':sticker:') ? (
-                                <Image src={mensagem.texto.replace(':sticker:', '')} />
+                                <Image styleSheet={{ maxWidth: '170px' }} src={mensagem.texto.replace(':sticker:', '')} />
                             ) : (
-                                mensagem.texto
+                                <p className={styles.p} styleSheet={{ maxWidth: '10px' }}>{mensagem.texto}</p>
                             )
                         }
                     </Text>
